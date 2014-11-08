@@ -17,15 +17,17 @@ class Snake {
     let bodyPartSize = CGSize(width: 20, height: 20)
     let numberOfTailParts: Int = 2
     let speed = 20
+    let animationDuration: NSTimeInterval
     
     let gameView: UIView
     
-    init(gameView: UIView, startPoint: CGPoint) {
+    init(gameView: UIView, startPoint: CGPoint, animationDuration: NSTimeInterval) {
         self.gameView = gameView
+        self.animationDuration = animationDuration
         createInitialSnakeAtStartPoint(startPoint)
     }
     
-    func createInitialSnakeAtStartPoint(point: CGPoint) {
+    private func createInitialSnakeAtStartPoint(point: CGPoint) {
         let startingRect = CGRect(origin: point, size: bodyPartSize)
         
         let head = BodyPart(frame: startingRect, headPart: true)
@@ -52,8 +54,10 @@ class Snake {
         }
         
         for part in bodyParts {
-            part.moveBodyPartWithSpeed(speed)
+            part.moveBodyPartWithSpeed(speed, duration: animationDuration)
         }
+        
+        removeIrrelevantMovements()
     }
     
     func addNewMovement(direction: BodyPart.MovementDirection) {
@@ -61,7 +65,24 @@ class Snake {
         movements.append(newMovement)
     }
     
-    func removeIrrelevantMovements() {
+    /**
+    Returns the front-most view of the snake (the head)
+
+    :returns An optional BodyPart instance, representing the snake's head
+    */
+    func headBodyPart() -> BodyPart! {
+        return bodyParts.first;
+    }
+    
+    func removeFromView() {
+        for part in bodyParts {
+            part.removeFromSuperview()
+        }
+        
+        bodyParts.removeAll(keepCapacity: false)
+    }
+    
+    private func removeIrrelevantMovements() {
         
         let tempMovementsCopy = movements
         

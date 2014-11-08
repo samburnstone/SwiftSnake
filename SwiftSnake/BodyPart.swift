@@ -30,29 +30,29 @@ class BodyPart: UIView {
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
-    func moveBodyPartWithSpeed(speed: Int) {
+    
+    /**
+    Move the body part
+    
+    :params speed The offset to move the body part by
+    :params duration The animation duration of this view
+    */
+    func moveBodyPartWithSpeed(speed: Int, duration: NSTimeInterval) {
         
         var movementVector: CGVector = CGVectorMake(0, 0)
         
         switch currentDirection {
             case .Right:
                 movementVector = CGVector(dx: speed, dy: 0)
-                println("Move right")
             case .Left:
                 movementVector = CGVector(dx: -speed, dy: 0)
-                println("Move left")
             case .Up:
                 movementVector = CGVector(dx: 0, dy: -speed)
-                println("Move up")
             case .Down:
                 movementVector = CGVector(dx: 0, dy: speed)
-                println("Move down")
         }
         
-        UIView.animateWithDuration(0.2, animations: {
-            println(movementVector.dx)
-            println(movementVector.dy)
+        UIView.animateWithDuration(duration, animations: {
             self.frame = CGRectOffset(self.frame, movementVector.dx, movementVector.dy)
         })
     }
