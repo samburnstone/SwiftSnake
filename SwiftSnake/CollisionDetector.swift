@@ -11,6 +11,7 @@ import UIKit
 
 protocol SnakeCollisionDelegate {
     func snakeDidCollideWithWall()
+    func snakeDidCollideWithFoodItem()
 }
 
 class CollisionDetector {
@@ -18,30 +19,46 @@ class CollisionDetector {
     /// The frame the snake must stay within
     let viewFrame: CGRect
     
+    /// Food spawner holding current food item on screen
+    let foodSpawner: FoodSpawner
+    
     var delegate: SnakeCollisionDelegate?
     
-    init(viewFrame: CGRect) {
+    init(viewFrame: CGRect, foodSpawner: FoodSpawner) {
         self.viewFrame = viewFrame
+        self.foodSpawner = foodSpawner
     }
     
-    func checkForCollision(objectToCheck: UIView) {
+    func checkForCollision(snake: Snake) {
         
         if delegate? == nil {
             println("Remember to set CollisionDetector's delegate!")
         }
         
-        if CGRectGetMinX(objectToCheck.frame) < 0 {
+        let headPart = snake.headBodyPart()
+        
+        // Check for collision with walls
+        if CGRectGetMinX(headPart.frame) < 0 {
             delegate?.snakeDidCollideWithWall()
         }
-        else if CGRectGetMaxX(objectToCheck.frame) > viewFrame.size.width {
+        else if CGRectGetMaxX(headPart.frame) > viewFrame.size.width {
             delegate?.snakeDidCollideWithWall()
         }
-        else if CGRectGetMinY(objectToCheck.frame) < 0 {
+        else if CGRectGetMinY(headPart.frame) < 0 {
             delegate?.snakeDidCollideWithWall()
         }
-        else if CGRectGetMaxY(objectToCheck.frame) > viewFrame.size.height {
+        else if CGRectGetMaxY(headPart.frame) > viewFrame.size.height {
             delegate?.snakeDidCollideWithWall()
         }
+        else {
+            // Check for collision with food item with all snake body parts
+            for bodyPart in snake.bodyParts {
+                if CGRectIntersectsRect(bodyPart.frame, foodSpawner.foodItemView.frame) {
+                    delegate?.snakeDidCollideWithFoodItem()
+                }
+            }
+        }
+        
     }
     
 }

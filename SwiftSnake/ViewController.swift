@@ -20,12 +20,12 @@ class ViewController: UIViewController, SnakeCollisionDelegate, UIAlertViewDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Initalize collision detector
-        collisionDetector = CollisionDetector(viewFrame: view.frame)
-        collisionDetector.delegate = self
-        
         // Create food spawner
         foodSpawner = FoodSpawner(viewFrame: view.frame)
+        
+        // Initalize collision detector
+        collisionDetector = CollisionDetector(viewFrame: view.frame, foodSpawner: foodSpawner)
+        collisionDetector.delegate = self
         
         startGame()
     }
@@ -35,7 +35,7 @@ class ViewController: UIViewController, SnakeCollisionDelegate, UIAlertViewDeleg
         snake = Snake(gameView: view, startPoint: CGPoint(x: 100, y: 100), animationDuration: updateInterval)
         
         // Add first food item to view
-        view.addSubview(foodSpawner.newFoodItem())
+        view.insertSubview(foodSpawner.newFoodItem(), belowSubview: snake.headBodyPart())
         
         // Create the timer
         gameLoopTimer = NSTimer.scheduledTimerWithTimeInterval(updateInterval, target: self, selector: Selector("update"), userInfo: nil, repeats: true)
@@ -47,7 +47,7 @@ class ViewController: UIViewController, SnakeCollisionDelegate, UIAlertViewDeleg
     }
     
     func update() {
-        collisionDetector.checkForCollision(snake.headBodyPart())
+        collisionDetector.checkForCollision(snake)
         snake.moveBodyParts()
     }
     
@@ -75,6 +75,12 @@ class ViewController: UIViewController, SnakeCollisionDelegate, UIAlertViewDeleg
         
         // Alert the player by showing an alert view for now
         UIAlertView(title: "You crashed into the wall!", message: "Better luck next time", delegate: self, cancelButtonTitle: "Whoops!").show()
+    }
+    
+    func snakeDidCollideWithFoodItem() {
+        foodSpawner.foodItemView.removeFromSuperview()
+        // Make sure snake appears above food item
+        view.insertSubview(foodSpawner.newFoodItem(), belowSubview: snake.headBodyPart())
     }
     
     // MARK:- UIAlertView Delegate Methods

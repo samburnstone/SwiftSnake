@@ -22,7 +22,7 @@ class FoodSpawner {
     let viewFrame: CGRect
     
     /// Food item currently on screen
-    let foodItemView = UIImageView(frame: CGRectMake(0, 0, 20, 20))
+    let foodItemView = UIImageView(frame: CGRectMake(0, 0, 30, 30))
     
     init(viewFrame: CGRect) {
         self.viewFrame = viewFrame
