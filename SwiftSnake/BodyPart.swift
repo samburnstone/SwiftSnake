@@ -52,8 +52,8 @@ class BodyPart: UIView {
                 movementVector = CGVector(dx: 0, dy: speed)
         }
         
-        UIView.animateWithDuration(duration, animations: {
+//        UIView.animateWithDuration(duration, animations: {
             self.frame = CGRectOffset(self.frame, movementVector.dx, movementVector.dy)
-        })
+//        })
     }
 }

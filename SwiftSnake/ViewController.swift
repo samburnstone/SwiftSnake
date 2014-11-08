@@ -72,11 +72,10 @@ class ViewController: UIViewController, SnakeCollisionDelegate, UIAlertViewDeleg
     
     // MARK:- UIAlertView Delegate Methods
     func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
-        
         // Remove snake from view
         snake.removeFromView()
         
-        // Restart game
+        // Start new game
         startGame()
     }
 }
