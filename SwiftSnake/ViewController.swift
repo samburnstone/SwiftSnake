@@ -13,6 +13,7 @@ class ViewController: UIViewController, SnakeCollisionDelegate, UIAlertViewDeleg
     var snake: Snake!
     var gameLoopTimer: NSTimer!
     var collisionDetector: CollisionDetector!
+    var foodSpawner: FoodSpawner!
     
     let updateInterval: NSTimeInterval = 0.2
     
@@ -23,12 +24,18 @@ class ViewController: UIViewController, SnakeCollisionDelegate, UIAlertViewDeleg
         collisionDetector = CollisionDetector(viewFrame: view.frame)
         collisionDetector.delegate = self
         
+        // Create food spawner
+        foodSpawner = FoodSpawner(viewFrame: view.frame)
+        
         startGame()
     }
     
     func startGame() {
         // Create snake
         snake = Snake(gameView: view, startPoint: CGPoint(x: 100, y: 100), animationDuration: updateInterval)
+        
+        // Add first food item to view
+        view.addSubview(foodSpawner.newFoodItem())
         
         // Create the timer
         gameLoopTimer = NSTimer.scheduledTimerWithTimeInterval(updateInterval, target: self, selector: Selector("update"), userInfo: nil, repeats: true)

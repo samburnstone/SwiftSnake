@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		F61812C01A0E6A590085D919 /* CollisionDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = F61812BF1A0E6A590085D919 /* CollisionDetector.swift */; };
+		F61812C21A0E8B760085D919 /* FoodSpawner.swift in Sources */ = {isa = PBXBuildFile; fileRef = F61812C11A0E8B760085D919 /* FoodSpawner.swift */; };
 		F6529FAE1A06DF6D00AA1DC4 /* Movement.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6529FAD1A06DF6D00AA1DC4 /* Movement.swift */; };
 		F67C81631A06CB9500311235 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67C81621A06CB9500311235 /* AppDelegate.swift */; };
 		F67C81651A06CB9500311235 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67C81641A06CB9500311235 /* ViewController.swift */; };
@@ -31,6 +32,7 @@
 
 /* Begin PBXFileReference section */
 		F61812BF1A0E6A590085D919 /* CollisionDetector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollisionDetector.swift; sourceTree = "<group>"; };
+		F61812C11A0E8B760085D919 /* FoodSpawner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodSpawner.swift; sourceTree = "<group>"; };
 		F6529FAD1A06DF6D00AA1DC4 /* Movement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Movement.swift; sourceTree = "<group>"; };
 		F67C815D1A06CB9500311235 /* SwiftSnake.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftSnake.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F67C81611A06CB9500311235 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -87,6 +89,7 @@
 			children = (
 				F67C81621A06CB9500311235 /* AppDelegate.swift */,
 				F67C81641A06CB9500311235 /* ViewController.swift */,
+				F61812C11A0E8B760085D919 /* FoodSpawner.swift */,
 				F61812BF1A0E6A590085D919 /* CollisionDetector.swift */,
 				F67C81861A06D05800311235 /* Snake */,
 				F67C81661A06CB9500311235 /* Main.storyboard */,
@@ -238,6 +241,7 @@
 				F67C81851A06CCB400311235 /* BodyPart.swift in Sources */,
 				F6529FAE1A06DF6D00AA1DC4 /* Movement.swift in Sources */,
 				F67C81831A06CC5700311235 /* Snake.swift in Sources */,
+				F61812C21A0E8B760085D919 /* FoodSpawner.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
