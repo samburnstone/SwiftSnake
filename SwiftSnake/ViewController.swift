@@ -15,7 +15,14 @@ class ViewController: UIViewController, SnakeCollisionDelegate, UIAlertViewDeleg
     var collisionDetector: CollisionDetector!
     var foodSpawner: FoodSpawner!
     
+    @IBOutlet weak var scoreLabel: UILabel!
+    
     let updateInterval: NSTimeInterval = 0.2
+    
+    /// Store the user's current score (incremented when collects food items)
+    var score = 0
+    /// The amount added on to user's score when a food item is picked up
+    let foodItemPickupScore = 10
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -81,6 +88,11 @@ class ViewController: UIViewController, SnakeCollisionDelegate, UIAlertViewDeleg
         foodSpawner.foodItemView.removeFromSuperview()
         // Make sure snake appears above food item
         view.insertSubview(foodSpawner.newFoodItem(), belowSubview: snake.headBodyPart())
+        
+        // Increment score
+        score += foodItemPickupScore
+        // Update score label
+        scoreLabel.text = "\(score)"
     }
     
     // MARK:- UIAlertView Delegate Methods

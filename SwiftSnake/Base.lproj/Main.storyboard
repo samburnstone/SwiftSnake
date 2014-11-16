@@ -69,6 +69,12 @@
                                     <action selector="moveLeft:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="lZz-TH-AOP"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pWK-3L-Oxk">
+                                <rect key="frame" x="293" y="28" width="15" height="33"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="27"/>
+                                <color key="textColor" red="1" green="0.94901960780000005" blue="0.89177804969999996" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.37519093260000003" green="0.66666666669999997" blue="0.1419574284" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -81,11 +87,16 @@
                             <constraint firstItem="h0X-ua-yPw" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-16" id="QLn-Am-3z9"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="b7d-Xo-WgW" secondAttribute="bottom" id="SO5-5t-26m"/>
                             <constraint firstItem="0bo-XK-8z2" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="104" id="Tez-38-akJ"/>
+                            <constraint firstItem="pWK-3L-Oxk" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="8" id="ThS-rK-GWZ"/>
+                            <constraint firstAttribute="centerX" secondItem="pWK-3L-Oxk" secondAttribute="centerX" id="dZi-NT-2hh"/>
                             <constraint firstItem="h0X-ua-yPw" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="topMargin" id="i1a-U8-CmM"/>
                             <constraint firstItem="d4f-8Z-ENi" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="104" id="wGU-lK-nQ9"/>
                             <constraint firstItem="0bo-XK-8z2" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-16" id="ysx-LB-5rz"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="scoreLabel" destination="pWK-3L-Oxk" id="a5p-kC-P9v"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
