@@ -31,10 +31,10 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h0X-ua-yPw">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="125"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="312"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="125" id="Sua-Ga-zrY"/>
+                                    <constraint firstAttribute="height" constant="312" id="Sua-Ga-zrY"/>
                                 </constraints>
                                 <state key="normal">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>

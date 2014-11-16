@@ -20,7 +20,12 @@ class ViewController: UIViewController, SnakeCollisionDelegate, UIAlertViewDeleg
     let updateInterval: NSTimeInterval = 0.2
     
     /// Store the user's current score (incremented when collects food items)
-    var score = 0
+    var score: Int = 0 {
+        didSet {
+            // Update score label when score updated
+            scoreLabel.text = "\(score)"
+        }
+    }
     /// The amount added on to user's score when a food item is picked up
     let foodItemPickupScore = 10
     
@@ -38,6 +43,10 @@ class ViewController: UIViewController, SnakeCollisionDelegate, UIAlertViewDeleg
     }
     
     func startGame() {
+        
+        // Reset score to zero
+        score = 0
+        
         // Create snake
         snake = Snake(gameView: view, startPoint: CGPoint(x: 100, y: 100), animationDuration: updateInterval)
         
@@ -91,8 +100,6 @@ class ViewController: UIViewController, SnakeCollisionDelegate, UIAlertViewDeleg
         
         // Increment score
         score += foodItemPickupScore
-        // Update score label
-        scoreLabel.text = "\(score)"
     }
     
     // MARK:- UIAlertView Delegate Methods
