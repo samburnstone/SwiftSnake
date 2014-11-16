@@ -17,13 +17,11 @@ class Snake {
     let bodyPartSize = CGSize(width: 20, height: 20)
     let numberOfTailParts: Int = 2
     let speed = 20
-    let animationDuration: NSTimeInterval
     
     let gameView: UIView
     
-    init(gameView: UIView, startPoint: CGPoint, animationDuration: NSTimeInterval) {
+    init(gameView: UIView, startPoint: CGPoint) {
         self.gameView = gameView
-        self.animationDuration = animationDuration
         createInitialSnakeAtStartPoint(startPoint)
     }
     
@@ -54,7 +52,7 @@ class Snake {
         }
         
         for part in bodyParts {
-            part.moveBodyPartWithSpeed(speed, duration: animationDuration)
+            part.moveBodyPartWithSpeed(speed)
         }
         
         removeIrrelevantMovements()

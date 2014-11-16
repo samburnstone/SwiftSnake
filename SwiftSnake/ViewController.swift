@@ -17,7 +17,10 @@ class ViewController: UIViewController, SnakeCollisionDelegate, UIAlertViewDeleg
     
     @IBOutlet weak var scoreLabel: UILabel!
     
-    let updateInterval: NSTimeInterval = 0.2
+    var updateInterval: NSTimeInterval = 0.2
+    var timeElapsedSinceLastSpeedIncrease: NSTimeInterval = 0.0
+    let timeIntervalUntilSpeedIncrease: NSTimeInterval = 10.0
+    let minUpdateInterval: NSTimeInterval = 0.1
     
     /// Store the user's current score (incremented when collects food items)
     var score: Int = 0 {
@@ -44,11 +47,13 @@ class ViewController: UIViewController, SnakeCollisionDelegate, UIAlertViewDeleg
     
     func startGame() {
         
-        // Reset score to zero
+        // Reset game variables
         score = 0
+        timeElapsedSinceLastSpeedIncrease = 0.0
+        updateInterval = 0.2
         
         // Create snake
-        snake = Snake(gameView: view, startPoint: CGPoint(x: 100, y: 100), animationDuration: updateInterval)
+        snake = Snake(gameView: view, startPoint: CGPoint(x: 100, y: 100))
         
         // Add first food item to view
         view.insertSubview(foodSpawner.newFoodItem(), belowSubview: snake.headBodyPart())
@@ -65,6 +70,20 @@ class ViewController: UIViewController, SnakeCollisionDelegate, UIAlertViewDeleg
     func update() {
         collisionDetector.checkForCollision(snake)
         snake.moveBodyParts()
+        
+        // Increase speed if necessary
+        timeElapsedSinceLastSpeedIncrease += updateInterval
+
+        if timeIntervalUntilSpeedIncrease - timeElapsedSinceLastSpeedIncrease <= 0.0 {
+            
+            if updateInterval >= minUpdateInterval {
+                updateInterval -= 0.01
+                timeElapsedSinceLastSpeedIncrease = 0.0;
+                
+                gameLoopTimer.invalidate()
+                gameLoopTimer = NSTimer.scheduledTimerWithTimeInterval(updateInterval, target: self, selector: Selector("update"), userInfo: nil, repeats: true)
+            }
+        }
     }
     
     // MARK:- Change of movement button selection methods

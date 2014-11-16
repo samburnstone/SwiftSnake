@@ -37,7 +37,7 @@ class BodyPart: UIView {
     :params speed The offset to move the body part by
     :params duration The animation duration of this view
     */
-    func moveBodyPartWithSpeed(speed: Int, duration: NSTimeInterval) {
+    func moveBodyPartWithSpeed(speed: Int) {
         
         var movementVector: CGVector = CGVectorMake(0, 0)
         
@@ -52,8 +52,6 @@ class BodyPart: UIView {
                 movementVector = CGVector(dx: 0, dy: speed)
         }
         
-//        UIView.animateWithDuration(duration, animations: {
-            self.frame = CGRectOffset(self.frame, movementVector.dx, movementVector.dy)
-//        })
+        self.frame = CGRectOffset(self.frame, movementVector.dx, movementVector.dy)
     }
 }
